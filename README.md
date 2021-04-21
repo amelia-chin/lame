@@ -1,4 +1,4 @@
-# Team lame
+# lame
 
 ### Roster:
 * Project Manager: Amelia Chin (achin10)
