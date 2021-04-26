@@ -30,3 +30,4 @@ ameliaC, ethanS, liamK, maddyA -- 2021-04-26 16:28
     - topic of our project
     - timeline
 - updated readme
+- renamed app.py to __init__.py
