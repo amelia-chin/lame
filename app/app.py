@@ -10,6 +10,14 @@ app.secret_key = os.urandom(32)
 dir = os.path.dirname(__file__) or "."
 dir += "/"
 
+
+'''
+root landing page
+'''
+@app.route("/")
+def root():
+    return "Hello world!"
+
 '''
 login function
 '''
@@ -51,3 +59,8 @@ def register():
             db.commit()
     except:
         return # we should make an "oops! there was an error page to prevent the thing from ever crashing"
+
+
+if __name__ == '__main__':
+    app.debug = True
+    app.run()

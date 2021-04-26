@@ -21,3 +21,4 @@ ethanS -- 2021-04-26 00:00
 - added basic login/user registration functionality
 - created db file
 - created users db table
+- added "app.run() section", app is runnable!
