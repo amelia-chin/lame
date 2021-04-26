@@ -10,7 +10,8 @@
 A study space site with:
 * A personalized greeting, the date and time, weather, holiday, motivational quote, and a cute dog picture
 * An editable to-do list
-* An editable notepad      
+* An editable notepad  
+      
 Users will have to login to use the site.
 
 ### Launch Codes:
