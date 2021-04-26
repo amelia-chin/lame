@@ -31,3 +31,11 @@ ameliaC, ethanS, liamK, maddyA -- 2021-04-26 16:28
     - timeline
 - updated readme
 - renamed app.py to __init__.py
+
+ethanS -- 2021-04-26 17:30
+- added page which tests login/out, we can now have sessions and accounts with usernames (it works)
+- created table in db to manage notes, added form section to HTML user_page file and some basic outlining of functions in __init__.py
+- added html template for future use
+- added error.html which just displays an L if something goes wrong (login error for now but will be expanded)
+- added helpers.py file, which will contain all helper functions not meant for __init__.py
+    - within helpers.py, added a_clean(str) function, which makes strings of raw text compatable with SQL queries

@@ -1,0 +1,54 @@
+<!--
+    lame
+    Amelia Chen, Ethan Shenker, Maddy Andersen, Liam Kronman
+    P3 - Study Zone
+    2021-04-26
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title> {% block title %}  {% endblock %} </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+    <section class="header">
+
+        {% if session.get("user_id") %}
+        <h4> Hello, {{ session.get("username") }}! </h4>
+        <div class="logout">
+            <form method="get" action="/logout">
+                <input name="Submit" type="submit" value="Logout"> <br> 
+            </form>
+        </div>
+        {% else %}
+
+        <!-- -->
+
+        {% endif %}
+    
+    </section>
+    
+        
+    <section class="content">
+
+        {% block content %}{% endblock %}
+        <!-- location where other file is "imported"-->
+
+    </section>
+
+    <br> <br>
+
+    <section class="footer">
+        {% if session.get("user_id") %}
+        {% endif %}
+    </section>
+
+
+</body>
+</html>
