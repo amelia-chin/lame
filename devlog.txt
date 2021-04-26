@@ -22,3 +22,11 @@ ethanS -- 2021-04-26 00:00
 - created db file
 - created users db table
 - added "app.run() section", app is runnable!
+
+ameliaC, ethanS, liamK, maddyA -- 2021-04-26 16:28
+- created site map for our profile page
+- updated design doc, addressed suggestions made by teams crabs and xoxo during DD review
+    - added notepad feature
+    - topic of our project
+    - timeline
+- updated readme
