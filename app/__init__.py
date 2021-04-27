@@ -1,7 +1,8 @@
 from flask import Flask, render_template, session, request
 from uuid import uuid4
-from helpers import a_clean
+from helpers import a_clean, get_greeting, tup_clean, a_remove
 from time import localtime, strftime
+
 import datetime             # how to get current date / time
 import sqlite3
 import os
@@ -20,6 +21,8 @@ root landing page
 '''
 @app.route("/")
 def root():
+    if session.get("username"):
+        return user_page()
     return render_template("root.html")
 
 def error():
@@ -39,24 +42,11 @@ def logout():
     except:
         return render_template("error.html")
 
-
+'''
+all content contained on main user page within this function
+'''
 @app.route("/user_page")
 def user_page():
-    curr_time = strftime("%H:%M:%S", localtime())
-    hour_time = int(curr_time[:2])
-    message_time = 0
-
-    if hour_time >= 12 and hour_time <= 18:
-        message_time = 1
-
-    if hour_time > 18:
-        message_time = 2
-
-    # TODO: RETRIEVE NOTE FROM DB
-    greetings = ["Good morning", "Good afternoon", "Good evening"]
-    for greeting in greetings:
-        greeting += ", " + session.get("username")
-
     # ADVICE SLIP API
     adv_data = urllib.request.urlopen("https://api.adviceslip.com/advice")
     adv_readable = adv_data.read()
@@ -66,10 +56,10 @@ def user_page():
 
     # PUBLIC HOLIDAY API
     API_KEY0 = open("keys/key_api0.txt", "r").read()
-    curr_time2 = strftime("%m:%d:%y", localtime())
-    month = curr_time2[:2]
-    day = curr_time2[3:5]
-    year = "20" + curr_time2[6:]
+    curr_time = strftime("%m:%d:%y", localtime())
+    month = curr_time[:2]
+    day = curr_time[3:5]
+    year = "20" + curr_time[6:]
 
     holi_data = urllib.request.urlopen("https://holidays.abstractapi.com/v1/?api_key=" + API_KEY0 + "&country=US&year=" + year + "&month=" + month + "&day=" + day)
     holi_readable = holi_data.read()
@@ -80,7 +70,19 @@ def user_page():
     else:
         holiday = "No Holiday(s) Today"
 
-    return render_template("user_page.html", greeting=greetings[message_time], adv = advice, holi = holiday)
+
+    # RETRIEVE USER NOTE
+    db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
+    c = db.cursor()
+    c.execute(f"SELECT content FROM user_note WHERE user_id = ?", (session.get("user_id"),))
+    prev_content = tup_clean(c) # returns list of each element from cursor
+
+    if len(prev_content) > 0: # if the user already had a note saved from a previous session
+        note = a_remove(prev_content[0])
+    else:
+        note = "Write anything here, and click the Save button below to save your work for the future!"
+    
+    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note)
 
 
 '''
@@ -94,7 +96,7 @@ def login():
 
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
     c = db.cursor()
-    c.execute(f"SELECT password, user_id FROM users WHERE username = '{username}'")
+    c.execute("SELECT password, user_id FROM users WHERE username = ?", (username,))
     accounts = list(c) #returns tuple
     if len(accounts) != 1:
         return error()
@@ -103,7 +105,7 @@ def login():
     else:
         session['username'] = username # add user and user_id to session for auth purposes
         session['user_id'] = accounts[0][1]
-    return user_page()
+    return root()
 
 
 '''
@@ -125,7 +127,7 @@ def register():
         return # TODO render_template() # return "user already exists js error"
     else:
         user_id = uuid4() # generate new uuid for user
-        c.execute(f"INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (user_id, username, password))
+        c.execute(f"INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (user_id, username, password,))
         session['username'] = str(username)
         session['user_id'] = user_id
         db.commit()
@@ -133,16 +135,20 @@ def register():
     return root()
 
 
-
-@app.route("/notes_update")
+'''
+any time user wishes to save notes content, it will come from here
+'''
+@app.route("/notes_update", methods=["POST"])
 def update_note():
+    user_id = session.get("user_id")
+    new_content = a_clean(request.form["notes"])
+    
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
     c = db.cursor()
 
-    content = a_clean(request.form["notes"])
-
-    c.execute("") #TODO DELTE OLD NOTE
-    # TODO EXECUTE WITH NEW NOTE CONTENT AS BODY
+    c.execute("DELETE FROM user_note WHERE user_id=?", (user_id,)) # remove old note from db
+    c.execute("INSERT INTO user_note (user_id, content) VALUES (?, ?);", (user_id, new_content,)) # add new one!
+    db.commit()
 
     return user_page()
 
