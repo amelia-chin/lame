@@ -16,6 +16,10 @@ dir = os.path.dirname(__file__) or "."
 dir += "/"
 
 
+# TODO: include try/catch blocks for each function
+## To-do list functionality (all)
+## error handling for if a username / password already exists
+
 '''
 root landing page
 '''
@@ -113,7 +117,6 @@ register function, registers new users
 '''
 @app.route("/register", methods=["POST"])
 def register():
-    #TODO INCLUDE TRY-CATCH BLOCKS FOR EACH FUNCTION
     username = request.form["username"]
     password = request.form["password"]
 

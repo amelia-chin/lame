@@ -52,3 +52,15 @@ ameliaC -- 2021-04-27 9:44
 liamK -- 2021-04-26 11:28
 - made greeting customized to a specific user by appending the user's name
 - created a javascript script that fetches and updates the clock every second
+
+ethanS -- 2021-04-27 12:50
+- finished notes functionality
+    - new users have a pre-chosen message pushed into template
+    - users can edit content and save it
+    - saved content is maintained between sessions
+- updated SQL queries to be resistant to SQL injection
+- addedd helper function a_remove, which is the opposite of a_clean
+    - a_clean duplicates apostrophes to prevent python string/parsing errors
+    - a_remove then takes out the extra apostrophe that was added
+- fixed to-dos
+- updated gitignore
