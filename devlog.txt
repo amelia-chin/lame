@@ -46,8 +46,13 @@ maddyA -- 2021-04-26 23:31
 - began work on making all of the resulting images the same size/standardized to fit our profile page
 
 ameliaC -- 2021-04-27 9:44
-- created own flask app to return a random peice of advice from the Advice Slip API
-- edited readme ("motivational quote" --> "advice"
+- created own flask app to return a random piece of advice from the Advice Slip API
+- edited readme ("motivational quote" --> "advice")
+
+ameliaC -- 2021-04-27 10:40
+- added on the Public Holiday API work to my separate flask app 
+- added the code for the Advice Slip and Public Holiday APIs to the __init__.py file
+- edited user_page.html to include a piece of advice and the holiday
 
 liamK -- 2021-04-26 11:28
 - made greeting customized to a specific user by appending the user's name
