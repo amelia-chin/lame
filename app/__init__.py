@@ -99,7 +99,7 @@ def register():
         return # TODO render_template() # return "user already exists js error"
     else:
         user_id = uuid4() # generate new uuid for user
-        c.execute(f"INSERT INTO users (user_id, username, password) VALUES ('{user_id}','{username}','{password}')")
+        c.execute(f"INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (user_id, username, password))
         session['username'] = str(username)
         session['user_id'] = user_id
         db.commit()
