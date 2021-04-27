@@ -8,7 +8,7 @@
 
 ### Project Description:
 A study space site with:
-* A personalized greeting, the date and time, weather, holiday, motivational quote, and a cute dog picture
+* A personalized greeting, the date and time, weather, holiday, advice, and a cute dog picture
 * An editable to-do list
 * An editable notepad  
       
