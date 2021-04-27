@@ -2,3 +2,5 @@ key_api0.txt
 key_api1.txt
 key_api2.txt
 app/venv
+app/__pycache__
+__pycache__
