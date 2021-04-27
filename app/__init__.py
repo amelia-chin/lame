@@ -52,6 +52,8 @@ def user_page():
         
     # TODO: RETRIEVE NOTE FROM DB
     greetings = ["Good morning", "Good afternoon", "Good evening"]
+    for greeting in greetings:
+        greeting += ", " + session.get("username")
     return render_template("user_page.html", greeting=greetings[message_time])
 
 
