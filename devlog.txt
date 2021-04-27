@@ -44,3 +44,7 @@ ethanS -- 2021-04-26 17:30
 maddyA -- 2021-04-26 23:31
 - created own flask app which successfully returns a random dog photo from the Dog CEO API
 - began work on making all of the resulting images the same size/standardized to fit our profile page
+
+ameliaC -- 2021-04-27 9:44
+- created own flask app to return a random peice of advice from the Advice Slip API
+- edited readme ("motivational quote" --> "advice"
