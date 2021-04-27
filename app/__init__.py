@@ -6,6 +6,8 @@ import datetime             # how to get current date / time
 import sqlite3
 import os
 import sys
+import urllib
+import json
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -29,8 +31,8 @@ logout function
 '''
 @app.route("/logout")
 def logout():
-    try:    
-        if session.get('user_id'): # if user logged in 
+    try:
+        if session.get('user_id'): # if user logged in
             session.pop('user_id') # clear all
             session.pop('username')
         return root()
@@ -46,15 +48,39 @@ def user_page():
 
     if hour_time >= 12 and hour_time <= 18:
         message_time = 1
-    
+
     if hour_time > 18:
         message_time = 2
-        
+
     # TODO: RETRIEVE NOTE FROM DB
     greetings = ["Good morning", "Good afternoon", "Good evening"]
     for greeting in greetings:
         greeting += ", " + session.get("username")
-    return render_template("user_page.html", greeting=greetings[message_time])
+
+    # ADVICE SLIP API
+    adv_data = urllib.request.urlopen("https://api.adviceslip.com/advice")
+    adv_readable = adv_data.read()
+    adv_d = json.loads(adv_readable)
+    slip = adv_d["slip"]
+    advice = slip["advice"]
+
+    # PUBLIC HOLIDAY API
+    API_KEY0 = open("keys/key_api0.txt", "r").read()
+    curr_time2 = strftime("%m:%d:%y", localtime())
+    month = curr_time2[:2]
+    day = curr_time2[3:5]
+    year = "20" + curr_time2[6:]
+
+    holi_data = urllib.request.urlopen("https://holidays.abstractapi.com/v1/?api_key=" + API_KEY0 + "&country=US&year=" + year + "&month=" + month + "&day=" + day)
+    holi_readable = holi_data.read()
+    holi_d = json.loads(holi_readable)
+    if (len(holi_d) >= 1):
+        days = holi_d[0]
+        holiday = days["name"]
+    else:
+        holiday = "No Holiday(s) Today"
+
+    return render_template("user_page.html", greeting=greetings[message_time], adv = advice, holi = holiday)
 
 
 '''
@@ -78,7 +104,7 @@ def login():
         session['username'] = username # add user and user_id to session for auth purposes
         session['user_id'] = accounts[0][1]
     return user_page()
-    
+
 
 '''
 register function, registers new users
