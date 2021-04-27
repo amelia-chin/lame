@@ -39,3 +39,4 @@ ethanS -- 2021-04-26 17:30
 - added error.html which just displays an L if something goes wrong (login error for now but will be expanded)
 - added helpers.py file, which will contain all helper functions not meant for __init__.py
     - within helpers.py, added a_clean(str) function, which makes strings of raw text compatable with SQL queries
+- added custom greeting based on time of day (good morning, good evening, etc)
