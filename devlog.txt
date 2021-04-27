@@ -40,3 +40,7 @@ ethanS -- 2021-04-26 17:30
 - added helpers.py file, which will contain all helper functions not meant for __init__.py
     - within helpers.py, added a_clean(str) function, which makes strings of raw text compatable with SQL queries
 - added custom greeting based on time of day (good morning, good evening, etc)
+
+maddyA -- 2021-04-26 23:31
+- created own flask app which successfully returns a random dog photo from the Dog CEO API
+- began work on making all of the resulting images the same size/standardized to fit our profile page
