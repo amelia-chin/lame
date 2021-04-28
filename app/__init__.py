@@ -9,6 +9,7 @@ import os
 import sys
 import urllib
 import json
+import geocoder
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -75,6 +76,13 @@ def user_page():
         holiday = days["name"]
     else:
         holiday = "No Holiday(s) Today"
+
+    # WEATHER API
+    g = geocoder.ip('me')
+    lat = g.latlng[0]
+    lng = g.latlng[0]
+    weather = urllib.request.urlopen("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lng + "&appid=d9d1602eadc504d0c76c376bdad00e96")
+    print(weather)
 
     # DOG PHOTO API
     u = urllib.request.urlopen("https://dog.ceo/api/breeds/image/random")
