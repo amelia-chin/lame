@@ -1,4 +1,4 @@
-# lame
+# tbd by lame
 
 ### Roster:
 * Project Manager: Amelia Chin (achin10)
@@ -14,6 +14,12 @@ A study space site with:
       
 Users will have to login to use the site.
 
+### APIs Used:
+Advice Slip API: 
+Public Holidays API:
+Dog CEO API:
+Open Weather API: 
+
 ### Launch Codes:
 * Clone this repository:
   `git clone https://github.com/amelia-chin/lame.git`
@@ -23,3 +29,4 @@ Users will have to login to use the site.
   `cd app`
 * Run:
   `python3 __init__.py`
+  
