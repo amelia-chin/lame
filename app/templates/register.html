@@ -1,0 +1,43 @@
+<!--
+  lame
+  Amelia Chin, Ethan Shenker, Maddy Andersen, Liam Kronman
+  P3 - Study Zone
+  2021-04-26
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <title> {% block title %}  {% endblock %} </title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type = "text/css" href="../static/css/style.css">
+</head>
+
+<body>
+
+  <form class="log-in-form" method="post" action="/register">
+    <h4 class="text-center">Register</h4>
+    <label>Username
+      <input name="username" type="text" required="required" min=0 placeholder="username">
+    </label>
+    <br>
+    <label>Password
+      <input name="password" type="password" required="required" min=0 placeholder="password">
+    </label>
+    <br>
+    <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
+    <p><input name="Submit" type="submit" value="create account"></input></p>
+  </form>
+
+  <br> <br>
+
+  <section class="footer">
+    {% if session.get("user_id") %}
+    logged in!
+    {% endif %}
+  </section>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ import os
 import sys
 import urllib
 import json
-import geocoder
+#import geocoder
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -28,7 +28,7 @@ root landing page
 def root():
     if session.get("username"):
         return user_page()
-    return render_template("root.html")
+    return render_template("login.html")
 
 def error():
     return render_template("error.html")
@@ -77,12 +77,12 @@ def user_page():
     else:
         holiday = "No Holiday(s) Today"
 
-    # WEATHER API
-    g = geocoder.ip('me')
-    lat = g.latlng[0]
-    lng = g.latlng[0]
-    weather = urllib.request.urlopen("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lng + "&appid=d9d1602eadc504d0c76c376bdad00e96")
-    print(weather)
+    ## WEATHER API
+    #g = geocoder.ip('me')
+    #lat = g.latlng[0]
+    #lng = g.latlng[0]
+    #weather = urllib.request.urlopen("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lng + "&appid=d9d1602eadc504d0c76c376bdad00e96")
+    #print(weather)
 
     # DOG PHOTO API
     u = urllib.request.urlopen("https://dog.ceo/api/breeds/image/random")
