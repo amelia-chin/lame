@@ -42,7 +42,6 @@ def logout():
         if session.get('user_id'): # if user logged in
             # TODO: can we find a way to have the notes section save on logout? would require we
             ## run the actual form from the HTML file
-
             session.pop('user_id') # clear all
             session.pop('username')
         return root()
