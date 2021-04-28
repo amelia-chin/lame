@@ -43,7 +43,7 @@ def logout():
             session.pop('username')
         return root()
     except:
-        return render_template("error.html")
+        return render_template("error.html") #TO DO: add error message
 
 '''
 all content contained on main user page within this function
@@ -120,7 +120,7 @@ def login():
     c.execute("SELECT password, user_id FROM users WHERE username=?", (username,))
     accounts = list(c) #returns tuple
     if len(accounts) != 1:
-        return render_template('error.html', message="No Account with that Username Exists.", route="/") # wrong username
+        return render_template('error.html', message="Incorrect Username or Password.", route="/") # wrong username
     elif password != accounts[0][0]:
         return render_template('error.html', message="Incorrect Username or Password.", route="/") # wrong password
     else:
