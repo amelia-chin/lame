@@ -91,3 +91,8 @@ maddyA -- 2021-04-28 1:06
 ameliaC -- 2021-04-27 13:40
 - wrote API card for Public Holidays API
 - added to api_kb in notes and code repo
+- edited readme to follow specification on stuycs assignment page
+    - changed heading to "tbd by lame"
+    - added new section for APIs used
+    - linked API cards for Advice Slip, Public Holidays, Dog CEO APIs
+    - Open Weather API will be linked once the card is made
