@@ -1,44 +1,65 @@
+body {
+  background-color: #bdbad0;
+}
+
+h1 {
+  color: #4b2142;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h2 {
+  text-transform: uppercase;
+  color: #539987;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 24px;
+  text-align: center;
+}
 
 .sign-in-form {
   padding: 1rem 1.5em;
   border-radius: .5rem;
-  background-color: #3d454f;
-}
-
-.sign-in-form h4 {
-  color: white;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
+  background-color: #4b2142;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 .sign-in-form label {
   text-transform: uppercase;
-  color: #adadad;
+  color: #539987;
   letter-spacing: 1px;
   font-weight: 600;
   margin-bottom: 1rem;
+  font-size: 24px;
 }
 
 .sign-in-form input {
   color: black;
+  font-size: 16px;
 }
 
 .sign-in-form input:focus {
-  opacity: .8;
+  opacity: .9;
 }
 
 .sign-in-form-username,
 .sign-in-form-password {
   border-radius: 30px;
   border: none;
-  opacity: .1;
+  opacity: .6;
   transition: all ease .4s;
+  padding: .5rem;
+  width: 97%;
+  color: #539987;
 }
 
-.sign-in-form-button {
+.button {
   border-radius: 30px;
-  border: 1px solid #fff;
+  border: 1px solid #539987;
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -47,11 +68,38 @@
   transition: all ease .4s;
 }
 
-.sign-in-form-button:hover {
-  background-color: #44c8ed;
-  border-color: #44c8ed;
+.button:hover {
+  background-color: #34231e;
+}
+
+.error-button {
+  border-radius: 30px;
+  border: 1px solid #539987;
+  background-color: #4b2142;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 1rem;
+  transition: all ease .4s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+
+.error-button:hover {
+  background-color: #34231e;
 }
 
 input[type=submit] {
-  color: white;
+  color: #539987;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #539987;
+	color: #4b2142;
+	text-align: center;
 }
