@@ -87,3 +87,7 @@ maddyA -- 2021-04-28 1:06
     - I added methods=["POST"] to the root route, so it now is @app.route("/", methods=["POST"])
     - root route works well if you start at http://127.0.0.1:5000/logout?Submit=Logout, click the sign up button, and then the cancel button, bringing you back to the root route
     - does not work if you immediately go to http://127.0.0.1:5000/
+
+ameliaC -- 2021-04-27 13:40
+- wrote API card for Public Holidays API
+- added to api_kb in notes and code repo
