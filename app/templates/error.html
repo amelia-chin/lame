@@ -1,8 +1,25 @@
 <!DOCTYPE html>
+<!--
+  Team SeamLess (Maddy Andersen, Amelia Chin, Erin Lee, Stella Oh)
+  SoftDev -- Rona Ed.
+  P1 -
+  2021-01-xx
+-->
+ <html>
+ <head>
+	 <title>Error Page</title>
+	 <link rel= "stylesheet" type="text/css" href="../static/css/style.css">
+ </head>
+ <body>
+    <h1>Oops!</h1>
+    <h4> {{ message }}</h4>
 
-<html>
-
-<body> <h1> L </h1> </body>
-
-
+    <form action = "{{ route }}" method="POST">
+        <input value = "Try Again" type="submit">
+    </form>
+	</div>
+	<div class="footer">
+  		<p>Team Lame (Maddy Andersen, Amelia Chin, Liam Kronman, Ethan Shenker)</p>
+	</div>
+</body>
 </html>

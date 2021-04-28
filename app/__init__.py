@@ -24,15 +24,11 @@ dir += "/"
 '''
 root landing page
 '''
-@app.route("/")
+@app.route("/", methods=["POST"])
 def root():
     if session.get("username"):
         return user_page()
     return render_template("login.html")
-
-def error():
-    return render_template("error.html")
-
 
 '''
 logout function
@@ -124,14 +120,18 @@ def login():
     c.execute("SELECT password, user_id FROM users WHERE username=?", (username,))
     accounts = list(c) #returns tuple
     if len(accounts) != 1:
-        return error()
+        return render_template('error.html', message="Login Failed", route="/") # wrong username
     elif password != accounts[0][0]:
-        return error() # wrong password - js error for that
+        return render_template('error.html', message="Login Failed", route="/") # wrong password
+        #TODO: messages are vague because we aren't supposed to tell the user why the login failed. we can make them more specific if we want though
     else:
         session['username'] = username # add user and user_id to session for auth purposes
         session['user_id'] = accounts[0][1]
     return root()
 
+@app.route("/create_user", methods=['POST'])
+def create_user():
+    return render_template('register.html')
 
 '''
 register function, registers new users
@@ -148,7 +148,9 @@ def register():
     pre_existing_usernames = list(c)
 
     if (username) in pre_existing_usernames:
-        return # TODO render_template() # return "user already exists js error"
+        return render_template('error.html', message="Username already exists", route="/create_user")
+        # TODO render_template() # return "user already exists js error"
+        # TODO i have not been able to test this but it should work?
     else:
         user_id = uuid4() # generate new uuid for user
         c.execute("INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (user_id, username, password,))
@@ -197,6 +199,7 @@ def add_item_todo():
     item_body = request.form['description']
     date_time = strftime("", localtime())
 
+# TODO: remember to delete!
 if __name__ == '__main__':
     app.debug = True
     app.run()

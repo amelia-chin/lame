@@ -16,51 +16,22 @@
 </head>
 
 <body>
-    <section class="header">
+      <h1>Welcome!</h1>
+        <form class="sign-in-form" method="POST" action="/login">
 
-        {% if session.get("user_id") %}
-        <h4> Hello, {{ session.get("username") }}! </h4>
-        <div class="logout">
-            <form method="get" action="/logout">
-                <input name="Submit" type="submit" value="Logout"> <br>
-            </form>
-        </div>
-        {% else %}
-
-        <h4> Either log in or register! </h4>
-
-        <div class="register">
-            <form method="post" action="/register">
-                <label for="ur"> Create </label> <br>
-                <input name="username" type="text" required="required" min=0> <br>
-                <input name="password" type="password" required="required" min=0> <br>
-                <input name="Submit" type="submit" value="Create Account"> <br>
-            </form>
-        </div>
-
+            <label for="sign-in-form-username">Username</label>
+            <br>
+            <input name="username" type="text" required="required" min=0 class="sign-in-form-username">
+            <br><br>
+            <label for="sign-in-form-password">Password</label>
+            <br>
+            <input name="password"  type="password" required="required" min=0 class="sign-in-form-password">
+            <br><br>
+            <input type="submit" value="Login" class="sign-in-form-button">
+        </form>
         <br>
-
-        <div class="login">
-            <form method="post" action="/login">
-                <label for="username"> Login w/ username (dev) </label> <br>
-                <input name="username" type="text" required="required" min=0> <br>
-                <input name="password" type="password" required="required" min=0> <br>
-                <input name="Submit" type="submit" value="Login"> <br>
-            </form>
-        </div>
-
-        {% endif %}
-
-    </section>
-
-    <br> <br>
-
-    <section class="footer">
-        {% if session.get("user_id") %}
-        logged in!
-        {% endif %}
-    </section>
-
-
+        <form class="sign-in-form" method="POST" action = "/create_user">
+          <input type="submit" value="New? Sign up!" class="sign-in-form-button">
+        </form>
 </body>
 </html>

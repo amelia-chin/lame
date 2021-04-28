@@ -16,28 +16,21 @@
 </head>
 
 <body>
-
-  <form class="log-in-form" method="post" action="/register">
-    <h4 class="text-center">Register</h4>
-    <label>Username
-      <input name="username" type="text" required="required" min=0 placeholder="username">
-    </label>
-    <br>
-    <label>Password
-      <input name="password" type="password" required="required" min=0 placeholder="password">
-    </label>
-    <br>
-    <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
-    <p><input name="Submit" type="submit" value="create account"></input></p>
+  <h1>Register</h1>
+  <form class="sign-in-form" method="POST" action="/login">
+      <label for="sign-in-form-username">Username</label>
+      <br>
+      <input name="username" type="text" required="required" min=0 class="sign-in-form-username">
+      <br><br>
+      <label for="sign-in-form-password">Password</label>
+      <br>
+      <input name="password"  type="password" required="required" min=0 class="sign-in-form-password">
+      <br><br>
+      <input type="submit" value="Sign Up" class="sign-in-form-button">
   </form>
-
-  <br> <br>
-
-  <section class="footer">
-    {% if session.get("user_id") %}
-    logged in!
-    {% endif %}
-  </section>
-
+  <br>
+  <form class="sign-in-form" action = "/" method="POST">
+      <input type="submit" value="Cancel" class="sign-in-form-button">
+  </form>
 </body>
 </html>
