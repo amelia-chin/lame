@@ -24,7 +24,7 @@ dir += "/"
 '''
 root landing page
 '''
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["POST", "GET"])
 def root():
     if session.get("username"):
         return user_page()
@@ -89,7 +89,7 @@ def user_page():
     # RETRIEVE USER NOTE
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
     c = db.cursor()
-    c.execute("SELECT content FROM user_note WHERE user_id=?", (session.get("user_id"),))
+    c.execute("SELECT content FROM user_note WHERE user_id=?", (str(session.get("user_id")),))
     prev_content = tup_clean(c) # returns list of each element from cursor
 
     if len(prev_content) > 0: # if the user already had a note saved from a previous session
@@ -99,11 +99,11 @@ def user_page():
 
     # RETREIVE TO-DO LIST
 
-    c.execute("SELECT title, content FROM todo WHERE user_id=?", (session.get("user_id"),))
-    to_do_list = tup_clean(c)
-    print(to_do_list)
+    c.execute("SELECT title, body FROM todo WHERE user_id=? ORDER BY date_time", (str(session.get("user_id")),)) # TODO : producing more than what exists in user account
+    to_do_list = list(list(c)[0])
+    # TODO: finish how to-do list is gonna be displayed on page
 
-    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, to_dos=to_do_list, picture=pic)
+    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, to_dos=to_do_list, picture=pic, route="/")
 
 
 '''
@@ -120,10 +120,9 @@ def login():
     c.execute("SELECT password, user_id FROM users WHERE username=?", (username,))
     accounts = list(c) #returns tuple
     if len(accounts) != 1:
-        return render_template('error.html', message="Login Failed", route="/") # wrong username
+        return render_template('error.html', message="No Account with that Username Exists.", route="/") # wrong username
     elif password != accounts[0][0]:
-        return render_template('error.html', message="Login Failed", route="/") # wrong password
-        #TODO: messages are vague because we aren't supposed to tell the user why the login failed. we can make them more specific if we want though
+        return render_template('error.html', message="Incorrect Username or Password.", route="/") # wrong password
     else:
         session['username'] = username # add user and user_id to session for auth purposes
         session['user_id'] = accounts[0][1]
@@ -153,7 +152,7 @@ def register():
         # TODO i have not been able to test this but it should work?
     else:
         user_id = uuid4() # generate new uuid for user
-        c.execute("INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (user_id, username, password,))
+        c.execute("INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (str(user_id), username, password,))
         session['username'] = str(username)
         session['user_id'] = user_id
         db.commit()
@@ -172,23 +171,23 @@ def update_note():
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
     c = db.cursor()
 
-    c.execute("DELETE FROM user_note WHERE user_id=?", (user_id,)) # remove old note from db
-    c.execute("INSERT INTO user_note (user_id, content) VALUES (?, ?);", (user_id, new_content,)) # add new one!
+    c.execute("DELETE FROM user_note WHERE user_id=?", (str(user_id),)) # remove old note from db
+    c.execute("INSERT INTO user_note (user_id, content) VALUES (?, ?);", (str(user_id), new_content,)) # add new one!
     db.commit()
 
     return user_page()
 
-
+# TODO: does not work for some reason, will figure out tomorrow
 @app.route("/clear_all", methods=["POST"])
 def clear_todo_list():
     user_id = session.get("user_id")
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
     c = db.cursor()
-    c.execute("DELETE FROM todo WHERE user_id=?", (user_id,))
+    c.execute("DELETE FROM todo WHERE user_id=?", (str(user_id),))
     db.commit()
     return root()
 
-
+# TODO : bug test and makes sure this works properly
 @app.route("/add_item", methods=["POST"])
 def add_item_todo():
     user_id = session.get("user_id")
@@ -197,7 +196,11 @@ def add_item_todo():
 
     item_title = request.form['title']
     item_body = request.form['description']
-    date_time = strftime("", localtime())
+    date_time = strftime("%Y-%m-%d %H:%M:%S", localtime())
+
+    c.execute("INSERT INTO todo (user_id, title, body, date_time) VALUES (?, ?, ?, ?)", (str(user_id), item_title, item_body, date_time))
+    db.commit()
+    return root()
 
 # TODO: remember to delete!
 if __name__ == '__main__':
