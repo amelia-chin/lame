@@ -109,6 +109,7 @@ def user_page():
     return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, picture=pic, to_dos=todo_list, route="/")
 
 
+
 '''
 login function
 '''
