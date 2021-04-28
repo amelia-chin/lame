@@ -76,6 +76,11 @@ def user_page():
     else:
         holiday = "No Holiday(s) Today"
 
+    # DOG PHOTO API
+    u = urllib.request.urlopen("https://dog.ceo/api/breeds/image/random")
+    response = u.read()
+    data = json.loads( response )
+    pic = data['message']
 
     # RETRIEVE USER NOTE
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
@@ -93,8 +98,8 @@ def user_page():
     c.execute("SELECT title, content FROM todo WHERE user_id=?", (session.get("user_id"),))
     to_do_list = tup_clean(c)
     print(to_do_list)
-    
-    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, to_dos=to_do_list)
+
+    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, to_dos=to_do_list, picture=pic)
 
 
 '''
@@ -153,7 +158,7 @@ any time user wishes to save notes content, it will come from here
 def update_note():
     user_id = session.get("user_id")
     new_content = a_clean(request.form["notes"])
-    
+
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
     c = db.cursor()
 
