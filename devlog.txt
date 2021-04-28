@@ -96,3 +96,4 @@ ameliaC -- 2021-04-27 13:40
     - added new section for APIs used
     - linked API cards for Advice Slip, Public Holidays, Dog CEO APIs
     - Open Weather API will be linked once the card is made
+- updated design doc to reflect change from motivational quote to piece of advice, uploaded new version
