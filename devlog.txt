@@ -73,3 +73,17 @@ ethanS -- 2021-04-27 12:50
 maddyA -- 2021-04-27 21:50
 - added the code for the dog photo API to the __init__.py file
 - edited user_page.html to include dog photo
+
+maddyA -- 2021-04-28 1:06
+- noticed an error with the Weather API (specifically with the geocoder library); commented it out and notified Liam (who will work on it)
+- created separate pages for login and register functions (updated __init__.py accordingly and split main.html into login.html and register.html)
+- created and began styling login.html and register.html
+- updated and began styling error.html
+- created style.css (and began experimenting with Foundation)
+- added a register button to login page (takes user from login page to register page)
+- a cancel button to register page (takes user from register page to login page)
+- added error messages for all errors, as well as correct routes for user to "try again"
+- experiencing an error when at the root route --> "Method Not Allowed. The method is not allowed for the requested URL."
+    - I added methods=["POST"] to the root route, so it now is @app.route("/", methods=["POST"])
+    - root route works well if you start at http://127.0.0.1:5000/logout?Submit=Logout, click the sign up button, and then the cancel button, bringing you back to the root route
+    - does not work if you immediately go to http://127.0.0.1:5000/
