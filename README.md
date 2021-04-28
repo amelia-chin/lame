@@ -15,10 +15,10 @@ A study space site with:
 Users will have to login to use the site.
 
 ### APIs Used:
-Advice Slip API: 
-Public Holidays API:
-Dog CEO API:
-Open Weather API: 
+Advice Slip API:  
+Public Holidays API:  
+Dog CEO API:  
+Open Weather API:  
 
 ### Launch Codes:
 * Clone this repository:
