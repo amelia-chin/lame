@@ -40,6 +40,9 @@ logout function
 def logout():
     try:
         if session.get('user_id'): # if user logged in
+            # TODO: can we find a way to have the notes section save on logout? would require we
+            ## run the actual form from the HTML file
+
             session.pop('user_id') # clear all
             session.pop('username')
         return root()
@@ -78,15 +81,21 @@ def user_page():
     # RETRIEVE USER NOTE
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
     c = db.cursor()
-    c.execute(f"SELECT content FROM user_note WHERE user_id = ?", (session.get("user_id"),))
+    c.execute("SELECT content FROM user_note WHERE user_id=?", (session.get("user_id"),))
     prev_content = tup_clean(c) # returns list of each element from cursor
 
     if len(prev_content) > 0: # if the user already had a note saved from a previous session
         note = a_remove(prev_content[0])
     else:
         note = "Write anything here, and click the Save button below to save your work for the future!"
+
+    # RETREIVE TO-DO LIST
+
+    c.execute("SELECT title, content FROM todo WHERE user_id=?", (session.get("user_id"),))
+    to_do_list = tup_clean(c)
+    print(to_do_list)
     
-    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note)
+    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, to_dos=to_do_list)
 
 
 '''
@@ -100,7 +109,7 @@ def login():
 
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
     c = db.cursor()
-    c.execute("SELECT password, user_id FROM users WHERE username = ?", (username,))
+    c.execute("SELECT password, user_id FROM users WHERE username=?", (username,))
     accounts = list(c) #returns tuple
     if len(accounts) != 1:
         return error()
@@ -130,7 +139,7 @@ def register():
         return # TODO render_template() # return "user already exists js error"
     else:
         user_id = uuid4() # generate new uuid for user
-        c.execute(f"INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (user_id, username, password,))
+        c.execute("INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (user_id, username, password,))
         session['username'] = str(username)
         session['user_id'] = user_id
         db.commit()
@@ -155,6 +164,26 @@ def update_note():
 
     return user_page()
 
+
+@app.route("/clear_all", methods=["POST"])
+def clear_todo_list():
+    user_id = session.get("user_id")
+    db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
+    c = db.cursor()
+    c.execute("DELETE FROM todo WHERE user_id=?", (user_id,))
+    db.commit()
+    return root()
+
+
+@app.route("/add_item", methods=["POST"])
+def add_item_todo():
+    user_id = session.get("user_id")
+    db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
+    c = db.cursor()
+
+    item_title = request.form['title']
+    item_body = request.form['description']
+    date_time = strftime("", localtime())
 
 if __name__ == '__main__':
     app.debug = True
