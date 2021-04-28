@@ -104,3 +104,9 @@ ameliaC -- 2021-04-27 13:40
     - linked API cards for Advice Slip, Public Holidays, Dog CEO APIs
     - Open Weather API will be linked once the card is made
 - updated design doc to reflect change from motivational quote to piece of advice, uploaded new version
+
+ameliaC, maddyA -- 2021-04-27 14:40
+- added styling to login.html, register.html, error.html pages --> now they all look very cohesive and aesthetic! 
+- added footnotes with team lame's roster at the bottom of every html page
+- spent an insane amount of time deciding on a color palette
+- struggled with problems with wacky margins/padding (didn't fully figure it out but that's okay) 
