@@ -69,3 +69,7 @@ ethanS -- 2021-04-27 12:50
     - a_remove then takes out the extra apostrophe that was added
 - fixed to-dos
 - updated gitignore
+
+maddyA -- 2021-04-27 21:50
+- added the code for the dog photo API to the __init__.py file
+- edited user_page.html to include dog photo
