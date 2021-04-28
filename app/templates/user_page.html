@@ -39,6 +39,8 @@
             <form method="post" action="/notes_update">
                 <textarea name="notes" rows="15" cols="60" style="resize:none;">{{ user_note }}</textarea><br>
                 <input type="submit" name="submit" value="Save">
+            </form>
+            
             </div>
 
             <div>
@@ -51,13 +53,14 @@
 
             <h2> to-do list </h2>
             {% for elem in to_dos %}
-            <!-- checkbox --> {{ elem[0] }}: {{ elem[1] }} <br> #TODO : todo list still in progress
+            <!-- checkbox --> {{ elem[0] }}: {{ elem[1] }} <br> <!-- TODO : todo list still in progress -->
             {% endfor %}
 
 
             <form method="post" action="/clear_all">
                 <input type="submit" name="submit" value="Clear All">
             </form>
+
             <form method="post" action="/add_item">
                 <label for="title"> Title </label> <br>
                 <textarea name="title" rows="1" cols="30" style="resize:none;"></textarea> <br>

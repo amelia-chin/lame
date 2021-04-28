@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request
 from uuid import uuid4
-from helpers import a_clean, get_greeting, tup_clean, a_remove
+from helpers import a_clean, get_greeting, tup_clean, a_remove, convert
 from time import localtime, strftime
 
 import datetime             # how to get current date / time
@@ -97,13 +97,16 @@ def user_page():
     else:
         note = "Write anything here, and click the Save button below to save your work for the future!"
 
-    # RETREIVE TO-DO LIST
+    c.execute("SELECT title, body FROM todo WHERE user_id=? ORDER BY date_time", (str(session.get("user_id")),))
+    todo_tuple = list(c)
+    num_items_already_in_list = len(todo_tuple)
 
-    c.execute("SELECT title, body FROM todo WHERE user_id=? ORDER BY date_time", (str(session.get("user_id")),)) # TODO : producing more than what exists in user account
-    to_do_list = list(list(c)[0])
-    # TODO: finish how to-do list is gonna be displayed on page
+    if num_items_already_in_list > 0:
+        todo_list = convert(todo_tuple)
+    else:
+        todo_list = []
 
-    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, to_dos=to_do_list, picture=pic, route="/")
+    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, picture=pic, to_dos=todo_list, route="/")
 
 
 '''
@@ -177,7 +180,6 @@ def update_note():
 
     return user_page()
 
-# TODO: does not work for some reason, will figure out tomorrow
 @app.route("/clear_all", methods=["POST"])
 def clear_todo_list():
     user_id = session.get("user_id")
@@ -197,6 +199,9 @@ def add_item_todo():
     item_title = request.form['title']
     item_body = request.form['description']
     date_time = strftime("%Y-%m-%d %H:%M:%S", localtime())
+    print(item_title)
+    print(item_body)
+    print(date_time)
 
     c.execute("INSERT INTO todo (user_id, title, body, date_time) VALUES (?, ?, ?, ?)", (str(user_id), item_title, item_body, date_time))
     db.commit()

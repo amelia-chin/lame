@@ -12,6 +12,8 @@ def a_remove(string: str) -> str:
         output += char
     return output
 
+def convert(arr: list) -> list:
+    return [list(item) for item in arr]
 
 def a_clean(string: str) -> str:
     output = ""
