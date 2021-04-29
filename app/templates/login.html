@@ -17,6 +17,16 @@
 
 <body>
       <h1>Welcome!</h1>
+       
+
+      {% if message is defined %}
+      <br>
+      <div class="login_error">
+        <h5> {{ message }} </h5>
+      </div>
+      {% endif %}
+
+        
         <form class="sign-in-form" method="POST" action="/login">
 
             <label for="sign-in-form-username">Username</label>
@@ -29,7 +39,7 @@
             <br><br>
             <input type="submit" value="Login" class="button">
         </form>
-        <br>
+       <br>
         <form class="sign-in-form" method="POST" action = "/create_user">
           <input type="submit" value="New? Sign up!" class="button">
         </form>

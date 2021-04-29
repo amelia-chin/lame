@@ -17,6 +17,14 @@
 
 <body>
   <h1>Register</h1>
+
+{% if message is defined %}
+  <div class="login_error">
+    <h5> {{ message }} </h5>
+  </div>
+{% endif %}
+
+
   <form class="sign-in-form" method="POST" action="/register">
       <label for="sign-in-form-username">Username</label>
       <br>

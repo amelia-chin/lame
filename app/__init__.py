@@ -20,14 +20,22 @@ dir += "/"
 ## To-do list functionality (all)
 ## error handling for if a username / password already exists
 
+
+def random_error():
+    return render_template("error.html", message="Something went wrong.", route="/logout")
+
+
 '''
 root landing page
 '''
 @app.route("/", methods=["POST", "GET"])
 def root():
-    if session.get("username"):
-        return user_page()
-    return render_template("login.html")
+    try:
+        if session.get("username"):
+            return user_page()
+        return render_template("login.html")
+    except:
+        return random_error()
 
 '''
 logout function
@@ -43,6 +51,14 @@ def logout():
         return root()
     except:
         return render_template("error.html") #TO DO: add error message
+
+
+def auth_error(is_user_conflict=False, is_login_incorrect=False):
+    if is_user_conflict:
+        return render_template("register.html", message="Username Already Exists.")
+    if is_login_incorrect:
+        return render_template("login.html", message="Username or Password is Incorrect.")
+
 
 '''
 all content contained on main user page within this function
@@ -125,10 +141,8 @@ def login():
     c = db.cursor()
     c.execute("SELECT password, user_id FROM users WHERE username=?", (username,))
     accounts = list(c) #returns tuple
-    if len(accounts) != 1:
-        return render_template('error.html', message="Incorrect Username or Password.", route="/") # wrong username
-    elif password != accounts[0][0]:
-        return render_template('error.html', message="Incorrect Username or Password.", route="/") # wrong password
+    if len(accounts) != 1 or password != accounts[0][0]:
+        return auth_error(is_login_incorrect=True)
     else:
         session['username'] = username # add user and user_id to session for auth purposes
         session['user_id'] = accounts[0][1]
@@ -150,12 +164,11 @@ def register():
     c = db.cursor()
     c.execute("SELECT username FROM users")
 
-    pre_existing_usernames = list(c)
+    pre_existing_usernames = convert(list(c))
+    print(pre_existing_usernames)
 
-    if (username) in pre_existing_usernames:
-        return render_template('error.html', message="Username already exists", route="/create_user")
-        # TODO render_template() # return "user already exists js error"
-        # TODO i have not been able to test this but it should work?
+    if [username] in pre_existing_usernames:
+        return auth_error(is_user_conflict=True)
     else:
         user_id = uuid4() # generate new uuid for user
         c.execute("INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (str(user_id), username, password,))
