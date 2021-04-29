@@ -17,18 +17,17 @@
 
     <body onload="updateClock(); setInterval('updateClock()', 1000)">
 
-        <section class="header">
 
             <div class = "banner">
-              <h1 class = "banner-text">{{ greeting }}!</h1>
-            </div>
-            <div class="logout">
+              <div class="logout">
                 <form method="get" action="/logout">
-                    <input name="Submit" type="submit" value="Logout"> <br>
+                    <input name="Submit" type="submit" value="Logout" class = "logout-button"> <br>
                 </form>
+                <h1 class = "banner-text">{{ greeting }}!</h1>
+                </div>
             </div>
 
-        </section>
+
 
 
         <section class="body">
