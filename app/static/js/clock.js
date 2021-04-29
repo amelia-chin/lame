@@ -48,5 +48,5 @@ function updateClock() {
 
     var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay + "\r\n" + currentDay + " " + currentMonth + " " + currentDate;
 
-    document.getElementById('clock').firstChild.nodeValue=currentTimeString;
+    document.getElementById('clock').innerHTML=currentTimeString;
 }
