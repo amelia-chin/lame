@@ -1,4 +1,4 @@
-# tbd by lame
+# Study Buddy by lame
 
 ### Roster:
 * Project Manager: Amelia Chin (achin10)
@@ -29,4 +29,3 @@ Users will have to login to use the site.
   `cd app`
 * Run:
   `python3 __init__.py`
-  
