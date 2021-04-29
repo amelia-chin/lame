@@ -25,7 +25,7 @@ dir += "/"
 fail safe!
 '''
 def random_error():
-    return render_template("error.html", message="Something went wrong.", route="/")
+    return render_template("error.html", message="Something went wrong.")
 
 
 '''
