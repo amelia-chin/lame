@@ -30,12 +30,12 @@ root landing page
 '''
 @app.route("/", methods=["POST", "GET"])
 def root():
-    try:
+    # try:
         if session.get("username"):
             return user_page()
         return render_template("login.html")
-    except:
-        return random_error()
+    # except:
+        # return random_error()
 
 '''
 logout function

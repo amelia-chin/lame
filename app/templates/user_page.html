@@ -58,7 +58,7 @@
 
                     <h2> to-do list </h2>
                     {% for elem in to_dos %}
-                    <!-- checkbox --> {{ elem[0] }}: {{ elem[1] }} <br> <!-- TODO : todo list still in progress -->
+                    <input type="checkbox"> {{ elem[0] }}: {{ elem[1] }} <br> <form action="/delete_item" method="post"> <input type="submit" value="Delete"> </form>
                     {% endfor %}
     
     
