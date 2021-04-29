@@ -111,17 +111,32 @@ ameliaC, maddyA -- 2021-04-28 14:40
 - spent an insane amount of time deciding on a color palette
 - struggled with problems with wacky margins/padding (didn't fully figure it out but that's okay) 
 
+maddyA -- 2021-04-28 19:30
+- continued working on styling after wrapping up call with Amelia
+- added a banner to the main study buddy page (user_page.html) with personalized greeting
+- stylized buttons on main study buddy page to match buttons on login.html and register.html
+- played around with padding on login and register pages --> still not perfect, but better than it was
+- tried dog facts api --> there seems to be a problem with the api itself (even http calls from the browswer do not work), so we aren't including it in our project
+
 ameliaC -- 2021-04-28 22:32
 - wrote API card for Open Weather API
 - added to api_kb in notes and code repo
 - edited readme 
     - linked Open Weather API card
     - added our project name "Study Buddy"
+    
+maddyA -- 2021-04-28 23:15
+- created a team flag on canva (including our team name and a dog photo)
+- pushed it to our repo
 
 liamK -- 2021-04-29 12:14
 - integrated Open Weather API and displayed on user_page.html
 - moved javascript originally in user_page to external folder
 - restyled user_page using grid system
+
+maddyA, ethanS -- 2021-04-29 12:30
+- created a function to add error messages directly to login page (username or password is incorrect) and to register page (username is already taken)
+- created a random_error() function to handle all other errors (general "Oops! Something went wrong." message)
 
 liamK -- 2021-04-29 1:22
 - aligned each item in to-do list with delete button
