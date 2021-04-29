@@ -111,7 +111,7 @@ ameliaC, maddyA -- 2021-04-28 14:40
 - spent an insane amount of time deciding on a color palette
 - struggled with problems with wacky margins/padding (didn't fully figure it out but that's okay) 
 
-ameliaC -- 2021-04-27 22:32
+ameliaC -- 2021-04-28 22:32
 - wrote API card for Open Weather API
 - added to api_kb in notes and code repo
 - edited readme 
@@ -120,5 +120,5 @@ ameliaC -- 2021-04-27 22:32
 
 liamK -- 2021-04-29 12:14
 - integrated Open Weather API and displayed on user_page.html
-- moved javascript to external folder
+- moved javascript originally in user_page to external folder
 - restyled user_page using grid system
