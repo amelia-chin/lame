@@ -57,9 +57,11 @@
                 <div class="to-do">
 
                     <h2> to-do list </h2>
+                    <ol>
                     {% for elem in to_dos %}
-                    <input type="checkbox"> {{ elem[0] }}: {{ elem[1] }} <br> <form action="/delete_item" method="post"> <input type="submit" value="Delete"> </form>
+                        <li>{{ elem[0] }}: {{ elem[1] }}<form action="/delete_item" method="post"><input type="hidden" name="item_id" value={{ elem[2] }}><input type="submit" value="Delete"></form></li>
                     {% endfor %}
+                    </ol>
     
     
                     <form method="post" action="/clear_all">

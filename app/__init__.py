@@ -115,7 +115,7 @@ def user_page():
     else:
         note = "Write anything here, and click the Save button below to save your work for the future!"
 
-    c.execute("SELECT title, body FROM todo WHERE user_id=? ORDER BY date_time", (str(session.get("user_id")),))
+    c.execute("SELECT title, body, item_id FROM todo WHERE user_id=? ORDER BY date_time", (str(session.get("user_id")),))
     todo_tuple = list(c)
     num_items_already_in_list = len(todo_tuple)
 
@@ -211,22 +211,24 @@ def add_item_todo():
     user_id = session.get("user_id")
     db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
     c = db.cursor()
-
+    item_id = str(uuid4())
     item_title = request.form['title']
     item_body = request.form['description']
     date_time = strftime("%Y-%m-%d %H:%M:%S", localtime())
-    print(item_title)
-    print(item_body)
-    print(date_time)
-
-    c.execute("INSERT INTO todo (user_id, title, body, date_time) VALUES (?, ?, ?, ?)", (str(user_id), item_title, item_body, date_time))
+    c.execute("INSERT INTO todo (user_id, item_id, title, body, date_time) VALUES (?, ?, ?, ?, ?)", (str(user_id), item_id, item_title, item_body, date_time,))
     db.commit()
     return root()
 
 
 @app.route("/delete_item", methods=["POST"])
 def delete_item_todo():
-    pass
+    user_id = session.get("user_id")
+    db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
+    c = db.cursor()
+    item_id = request.form["item_id"]
+    c.execute("DELETE FROM todo WHERE item_id=? AND user_id=?", (item_id, user_id,))
+    db.commit()
+    return root()
 
 
 # TODO: remember to delete!
