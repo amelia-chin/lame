@@ -75,7 +75,7 @@ def user_page():
     ## WEATHER API
     API_KEY1 = open("keys/key_api1.txt", "r").read()
 
-    weather = urllib.request.urlopen("https://api.openweathermap.org/data/2.5/weather?q=New%20York&appid=" + str(API_KEY1)).read()
+    weather = urllib.request.urlopen("https://api.openweathermap.org/data/2.5/weather?q=New%20York&appid=" + API_KEY1).read()
     weather = json.loads(weather.decode('utf-8'))
     weather_dict = {}
     weather_dict['main'] = weather['weather'][0]['main']
