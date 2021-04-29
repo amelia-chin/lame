@@ -95,7 +95,7 @@ ethanS -- 2021-04-28 1:49
 - continued work on to-do list, notable fixes need to be made are written as TODOs in doc
 - added specific error messages on login failure, either "username does not exist" or "user/pass is incorrect", doesn't specify which for security reasons
 
-ameliaC -- 2021-04-27 13:40
+ameliaC -- 2021-04-28 13:40
 - wrote API card for Public Holidays API
 - added to api_kb in notes and code repo
 - edited readme to follow specification on stuycs assignment page
@@ -105,8 +105,15 @@ ameliaC -- 2021-04-27 13:40
     - Open Weather API will be linked once the card is made
 - updated design doc to reflect change from motivational quote to piece of advice, uploaded new version
 
-ameliaC, maddyA -- 2021-04-27 14:40
+ameliaC, maddyA -- 2021-04-28 14:40
 - added styling to login.html, register.html, error.html pages --> now they all look very cohesive and aesthetic! 
 - added footnotes with team lame's roster at the bottom of every html page
 - spent an insane amount of time deciding on a color palette
 - struggled with problems with wacky margins/padding (didn't fully figure it out but that's okay) 
+
+ameliaC -- 2021-04-27 22:32
+- wrote API card for Open Weather API
+- added to api_kb in notes and code repo
+- edited readme 
+    - linked Open Weather API card
+    - added our project name "Study Buddy"

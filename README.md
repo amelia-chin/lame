@@ -1,4 +1,4 @@
-# tbd by lame
+# Study Buddy by lame
 
 ### Roster:
 * Project Manager: Amelia Chin (achin10)
@@ -18,7 +18,7 @@ Users will have to login to use the site.
 [Advice Slip API](https://github.com/stuy-softdev/notes-and-code20-21/blob/692860fcf951ee04a800ff39dd88b1b7b254ca74/api_kb/411_on_AdviceSlip.md)  
 [Public Holidays API](https://github.com/stuy-softdev/notes-and-code20-21/blob/692860fcf951ee04a800ff39dd88b1b7b254ca74/api_kb/411_on_PublicHolidays.md)  
 [Dog CEO API](https://github.com/stuy-softdev/notes-and-code20-21/blob/692860fcf951ee04a800ff39dd88b1b7b254ca74/api_kb/411_on_DogCEO.md)  
-Open Weather API (API card not created yet)  
+[Open Weather API](https://github.com/stuy-softdev/notes-and-code20-21/blob/f040d6837ca0847fa832fdb1aa59cd826fcb9d45/api_kb/411_on_OpenWeather.md)  
 
 ### Launch Codes:
 * Clone this repository:
@@ -29,4 +29,3 @@ Open Weather API (API card not created yet)
   `cd app`
 * Run:
   `python3 __init__.py`
-  
