@@ -22,7 +22,7 @@ dir += "/"
 
 
 def random_error():
-    return render_template("error.html", message="Something went wrong.", route="/logout")
+    return render_template("error.html", message="Something went wrong.", route="/")
 
 
 '''
@@ -222,6 +222,11 @@ def add_item_todo():
     c.execute("INSERT INTO todo (user_id, title, body, date_time) VALUES (?, ?, ?, ?)", (str(user_id), item_title, item_body, date_time))
     db.commit()
     return root()
+
+@app.route("/delete_item", methods=["POST"])
+def delete_item_todo():
+    pass
+
 
 # TODO: remember to delete!
 if __name__ == '__main__':
