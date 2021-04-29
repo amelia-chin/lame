@@ -23,6 +23,8 @@ Users will have to login to use the site.
 ### Launch Codes:
 * Clone this repository:
   `git clone https://github.com/amelia-chin/lame.git`
+* Go to the lame directory:
+  `cd lame`
 * Install the required modules:
   `pip install -r requirements.txt`
 * Go to app directory:
