@@ -9,7 +9,6 @@ import os
 import sys
 import urllib
 import json
-#import geocoder
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -74,11 +73,14 @@ def user_page():
         holiday = "No Holiday(s) Today"
 
     ## WEATHER API
-    #g = geocoder.ip('me')
-    #lat = g.latlng[0]
-    #lng = g.latlng[0]
-    #weather = urllib.request.urlopen("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lng + "&appid=d9d1602eadc504d0c76c376bdad00e96")
-    #print(weather)
+    API_KEY1 = open("keys/key_api1.txt", "r").read()
+
+    weather = urllib.request.urlopen("https://api.openweathermap.org/data/2.5/weather?q=New%20York&appid=" + str(API_KEY1)).read()
+    weather = json.loads(weather.decode('utf-8'))
+    weather_dict = {}
+    weather_dict['main'] = weather['weather'][0]['main']
+    weather_dict['temp'] = int(9.0/5.0*(weather['main']['temp'] - 273) + 32)
+
 
     # DOG PHOTO API
     u = urllib.request.urlopen("https://dog.ceo/api/breeds/image/random")
@@ -106,7 +108,7 @@ def user_page():
     else:
         todo_list = []
 
-    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, picture=pic, to_dos=todo_list, route="/")
+    return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, picture=pic, to_dos=todo_list, weather=weather_dict, route="/")
 
 
 

@@ -43,6 +43,7 @@ h2 {
 }
 
 .sign-in-form input:focus {
+  outline:0;
   opacity: .9;
 }
 
@@ -118,6 +119,7 @@ input[type=submit] {
   width: 100%;
   background-color: #4b2142;
   text-align: center;
+  padding-bottom: 1vh;
 }
 
 .pfp-button {
@@ -149,6 +151,8 @@ input[type=submit] {
   float: right;
   margin-left: -50%;
   margin-top: 2em;
+  position: relative;
+  right: 1vw;
 }
 
 .logout-button:hover {
