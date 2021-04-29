@@ -1,3 +1,8 @@
+# Team lame (Amelia Chin, Ethan Shenker, Liam Kronman, Maddy Andersen)
+# SoftDev — Rona Ed.
+# P3 - Study Zone
+# 2021-04-29
+
 from time import strftime, localtime
 
 def a_remove(string: str) -> str:
