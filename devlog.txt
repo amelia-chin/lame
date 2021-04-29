@@ -137,6 +137,16 @@ liamK -- 2021-04-29 12:14
 maddyA, ethanS -- 2021-04-29 12:30
 - created a function to add error messages directly to login page (username or password is incorrect) and to register page (username is already taken)
 - created a random_error() function to handle all other errors (general "Oops! Something went wrong." message)
+- added calls to redirect rather than function calls at ends of each utiltiy function (add_item, etc.)
+
+ethanS -- 2021-04-29 1:00
+- finished to-do list functionality
+    - users can reliably add/delete items and clear the entire list
+    - cleaned up indexErrors experienced previously when data structures uncleaned
+- added column to todo 
+- added helper function to helpers.py which converts up list of tuples into list of lists
+- added try/catch blocks around all functions to ensure no crashes
+- added comments to __init__.py
 
 liamK -- 2021-04-29 1:22
 - aligned each item in to-do list with delete button
