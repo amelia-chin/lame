@@ -40,7 +40,7 @@
                 <div class="notes">
                     <h2>Notes</h2>
                     <form method="post" action="/notes_update">
-                        <textarea name="notes" rows="20" cols="35" style="resize:none;">{{ user_note }}</textarea><br>
+                        <textarea name="notes" rows="20" cols="35" style="resize:none;" class="tb">{{ user_note }}</textarea><br>
                         <input type="submit" name="submit" value="Save" class="pfp-button">
                     </form>
 
@@ -67,9 +67,9 @@
 
                     <form method="post" action="/add_item">
                         <label for="title" class="weather"> Title </label> <br>
-                        <textarea name="title" rows="1" cols="30" style="resize:none;"></textarea> <br>
+                        <textarea name="title" rows="1" cols="30" style="resize:none;" class="tb"></textarea> <br>
                         <label for="description" class="weather"> Stuff to do! </label> <br>
-                        <textarea name="description" rows="3" cols="30" style="resize:none;"></textarea> <br>
+                        <textarea name="description" rows="3" cols="30" style="resize:none;" class="tb"></textarea> <br>
                         <input type="submit" name="submit" value="Add Item" class="pfp-button">
                     </form>
 

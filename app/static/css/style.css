@@ -5,6 +5,11 @@ P3 - Study Zone
 2021-04-29
 */
 
+/*
+  buttons, as well as styling for login.html and register.html were inspired by
+  https://get.foundation/building-blocks/blocks/sign-in-form.html
+*/
+
 body {
   background-color: #bdbad0;
 }
@@ -122,13 +127,14 @@ input[type=submit] {
 }
 
 .footer {
-	position: fixed;
 	left: 0;
 	bottom: 0;
 	width: 100%;
 	background-color: #539987;
 	color: #4b2142;
 	text-align: center;
+  padding-top: .001rem;
+  padding-bottom: .001rem;
 }
 
 .banner-text {
@@ -178,8 +184,16 @@ input[type=submit] {
   background-color: #34231e;
 }
 
+.logout-button:focus {
+  outline:0;
+}
+
 .pfp-button:hover {
   background-color: #34231e;
+}
+
+.pfp-button:focus {
+  outline:0;
 }
 
 .login_error{
@@ -192,6 +206,8 @@ input[type=submit] {
 img{
   height: 23vw;
   width: 30vw;
+  border-radius: 10px;
+  border: none;
 }
 
 #clock{
@@ -253,4 +269,14 @@ li{
 #third-col {
   position: relative;
   top: 5%;
+}
+
+.tb{
+  border-radius: 10px;
+  border: none;
+  padding: .5rem
+}
+
+.tb:focus {
+  outline:0;
 }
