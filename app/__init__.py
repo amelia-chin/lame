@@ -223,6 +223,7 @@ def add_item_todo():
     db.commit()
     return root()
 
+
 @app.route("/delete_item", methods=["POST"])
 def delete_item_todo():
     pass
