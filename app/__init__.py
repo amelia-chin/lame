@@ -1,3 +1,8 @@
+# Team lame (Amelia Chin, Ethan Shenker, Liam Kronman, Maddy Andersen)
+# SoftDev -- Rona Ed.
+# P3 - Study Zone
+# 2021 - 04 - 29
+
 from flask import Flask, render_template, session, request, redirect, url_for
 from uuid import uuid4
 from helpers import a_clean, get_greeting, tup_clean, a_remove, convert
@@ -16,10 +21,6 @@ dir = os.path.dirname(__file__) or "."
 dir += "/"
 
 
-# TODO: include try/catch blocks for each function
-## To-do list functionality (all)
-## error handling for if a username / password already exists
-
 '''
 fail safe!
 '''
@@ -32,7 +33,7 @@ root landing page
 '''
 @app.route("/", methods=["POST", "GET"])
 def root():
-    if session.get("username"):
+    if session.get("username"): # if the user is logged in, send them to their home page
         return user_page()
     return render_template("login.html")
             
@@ -44,15 +45,17 @@ logout function
 def logout():
     try:
         if session.get('user_id'): # if user logged in
-            # TODO: can we find a way to have the notes section save on logout? would require we
-            ## run the actual form from the HTML file
             session.pop('user_id') # clear all
             session.pop('username')
         return root()
     except:
         return render_template("error.html") #TO DO: add error message
 
-
+'''
+function that specifically handles case that either user has attempted login with
+invalid credentials or that new user tried to register with username that was already taken.
+uses positional arguments to be called from within multiple functions with same use case.
+'''
 def auth_error(is_user_conflict=False, is_login_incorrect=False):
     if is_user_conflict:
         return render_template("register.html", message="Username Already Exists.")
@@ -112,16 +115,17 @@ def user_page():
         prev_content = tup_clean(c) # returns list of each element from cursor
 
         if len(prev_content) > 0: # if the user already had a note saved from a previous session
-            note = a_remove(prev_content[0])
+            note = a_remove(prev_content[0]) # clean all apostrophes from the content the user uploaded
         else:
             note = "Write anything here, and click the Save button below to save your work for the future!"
 
+        # RETREIVE TODO LIST
         c.execute("SELECT title, body, item_id FROM todo WHERE user_id=? ORDER BY date_time", (str(session.get("user_id")),))
         todo_tuple = list(c)
-        num_items_already_in_list = len(todo_tuple)
+        num_items_already_in_list = len(todo_tuple) # checks to see if user has any items in to do list preexisting
 
         if num_items_already_in_list > 0:
-            todo_list = convert(todo_tuple)
+            todo_list = convert(todo_tuple) # converts list of tuples into list of subscriptable lists
         else:
             todo_list = []
 
@@ -144,7 +148,7 @@ def login():
         c = db.cursor()
         c.execute("SELECT password, user_id FROM users WHERE username=?", (username,))
         accounts = list(c) #returns tuple
-        if len(accounts) != 1 or password != accounts[0][0]:
+        if len(accounts) != 1 or password != accounts[0][0]: # no accounts w/ specified username or incorrect password
             return auth_error(is_login_incorrect=True)
         else:
             session['username'] = username # add user and user_id to session for auth purposes
@@ -153,9 +157,14 @@ def login():
     except:
         random_error()
 
+
+'''
+function to load register.html page where users can register using form as opposed to logging in
+'''
 @app.route("/create_user", methods=['POST'])
 def create_user():
     return render_template('register.html')
+
 
 '''
 register function, registers new users
@@ -171,10 +180,9 @@ def register():
         c.execute("SELECT username FROM users")
 
         pre_existing_usernames = convert(list(c))
-        print(pre_existing_usernames)
 
         if [username] in pre_existing_usernames:
-            return auth_error(is_user_conflict=True)
+            return auth_error(is_user_conflict=True) # username already exists
         else:
             user_id = uuid4() # generate new uuid for user
             c.execute("INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)", (str(user_id), username, password,))
@@ -185,6 +193,7 @@ def register():
         return root()
     except:
         random_error() 
+
 
 '''
 any time user wishes to save notes content, it will come from here
@@ -206,13 +215,14 @@ def update_note():
     except:
         random_error()
 
+
 @app.route("/clear_all", methods=["POST"])
 def clear_todo_list():
     try:
         user_id = session.get("user_id")
         db = sqlite3.connect(dir + "lame.db") # dir + "blog.db") # connects to sqlite table
         c = db.cursor()
-        c.execute("DELETE FROM todo WHERE user_id=?", (str(user_id),))
+        c.execute("DELETE FROM todo WHERE user_id=?", (str(user_id),)) # removes all items associated w/ user
         db.commit()
         return redirect(url_for('root'))
     except:
@@ -249,7 +259,7 @@ def delete_item_todo():
     except:
         random_error()
 
-# TODO: remember to delete!
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
