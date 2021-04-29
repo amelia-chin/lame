@@ -5,8 +5,8 @@ body {
 .body {
   display: grid;
   gap: 1rem;
-
   grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
 }
 
 h1 {
@@ -23,7 +23,18 @@ h2 {
   letter-spacing: 1px;
   font-weight: 600;
   margin-bottom: 1rem;
-  font-size: 24px;
+  font-size: 30px;
+  text-align: center;
+  font-style: bold;
+}
+
+h5 {
+  text-transform: uppercase;
+  color: #bdbad0;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 20px;
   text-align: center;
 }
 
@@ -135,12 +146,9 @@ input[type=submit] {
   background-color: #4b2142;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 1rem;
+  padding: .5rem;
   transition: all ease .4s;
-  /*display: block;
-  margin-left: auto;
-  margin-right: auto;*/
-  width: 20%;
+  width: 40%;
 }
 
 .logout-button {
@@ -151,9 +159,6 @@ input[type=submit] {
   letter-spacing: 1px;
   padding: 1rem;
   transition: all ease .4s;
-  /*display: block;
-  margin-left: auto;
-  margin-right: auto;*/
   width: 10%;
   float: right;
   margin-left: -50%;
@@ -165,6 +170,70 @@ input[type=submit] {
 .logout-button:hover {
   background-color: #34231e;
 }
+
 .pfp-button:hover {
   background-color: #34231e;
+}
+
+.login_error{
+    border-radius: .5rem;
+    background-color: #A32D00;
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+
+img{
+  height: 30vw;
+  width: 30vw;
+}
+
+#clock{
+    text-transform: uppercase;
+    color: #34231e;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 36px;
+    text-align: center;
+}
+
+#holi{
+  text-transform: uppercase;
+  color: #4b2142;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 20px;
+  font-style: italic;
+}
+
+#adv{
+  color: #539987;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 18px;
+}
+
+.weather-label{
+  text-transform: uppercase;
+  color: #539987;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 24px;
+}
+
+.weather{
+  color: #4b2142;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 24px;
+}
+
+li{
+  text-align: left;
+  color: #34231e;
+  font-size: 18px;
 }

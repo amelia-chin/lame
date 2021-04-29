@@ -10,23 +10,21 @@
 <html lang="en">
 
 <head>
-    <title> {% block title %}  {% endblock %} </title>
+    <title>Login</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type = "text/css" href="../static/css/style.css">
 </head>
 
 <body>
       <h1>Welcome!</h1>
-       
 
       {% if message is defined %}
-      <br>
       <div class="login_error">
         <h5> {{ message }} </h5>
       </div>
       {% endif %}
 
-        
+
         <form class="sign-in-form" method="POST" action="/login">
 
             <label for="sign-in-form-username">Username</label>
