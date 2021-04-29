@@ -117,3 +117,8 @@ ameliaC -- 2021-04-27 22:32
 - edited readme 
     - linked Open Weather API card
     - added our project name "Study Buddy"
+
+liamK -- 2021-04-29 12:14
+- integrated Open Weather API and displayed on user_page.html
+- moved javascript to external folder
+- restyled user_page using grid system
