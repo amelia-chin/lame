@@ -122,3 +122,8 @@ liamK -- 2021-04-29 12:14
 - integrated Open Weather API and displayed on user_page.html
 - moved javascript originally in user_page to external folder
 - restyled user_page using grid system
+
+liamK -- 2021-04-29 1:22
+- aligned each item in to-do list with delete button
+- restyled columns, getting rid of empty space above and below the initial window view
+- added comments
