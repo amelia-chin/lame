@@ -152,3 +152,11 @@ liamK -- 2021-04-29 1:22
 - aligned each item in to-do list with delete button
 - restyled columns, getting rid of empty space above and below the initial window view
 - added comments
+
+ameliaC -- 2021-04-29 2:13
+- we tested the app on everyone's computers, but mine is the only one that doesn't work.
+- i kept getting directed to the error page when i try to login or register.
+- tried running it on chrome, incognito mode, safari, and firefox --> did not work
+- also tried after i restarted my computer --> did not work
+- also tried clearing cache --> did not work
+- we don't know what is going on, but since it works on everyone else's computers it isn't a problem with the app itself
