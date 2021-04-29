@@ -1,3 +1,8 @@
+// Team lame (Amelia Chin, Ethan Shenker, Liam Kronman, Maddy Andersen)
+// SoftDev — Rona Ed.
+// P3 - Study Zone
+// 2021-04-29
+
 function updateClock() {
     var currentTime = new Date();
 
@@ -46,7 +51,7 @@ function updateClock() {
     currentDate = (currentDate == 3) || currentDate == 23 ? currentDate + "rd" : currentDate;
     currentDate = (currentDate > 3 || currentDate < 21 || currentDate > 23 || currentDate < 31) ? currentDate + "th" : currentDate;
 
-    var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay + "\r\n" + currentDay + " " + currentMonth + " " + currentDate;
+    var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay + "<br>" + currentDay + " " + currentMonth + " " + currentDate;
 
     document.getElementById('clock').innerHTML=currentTimeString;
 }

@@ -1,3 +1,10 @@
+/*
+Team lame (Amelia Chin, Ethan Shenker, Liam Kronman, Maddy Andersen)
+SoftDev — Rona Ed.
+P3 - Study Zone
+2021-04-29
+*/
+
 body {
   background-color: #bdbad0;
 }
@@ -183,7 +190,7 @@ input[type=submit] {
   }
 
 img{
-  height: 30vw;
+  height: 23vw;
   width: 30vw;
 }
 
@@ -236,4 +243,14 @@ li{
   text-align: left;
   color: #34231e;
   font-size: 18px;
+}
+
+#first-col {
+  position: relative;
+  top: 10%;
+}
+
+#third-col {
+  position: relative;
+  top: 5%;
 }
