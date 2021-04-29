@@ -131,7 +131,7 @@ def user_page():
 
         return render_template("user_page.html", greeting=get_greeting(session.get("username")), adv=advice, holi=holiday, user_note=note, picture=pic, to_dos=todo_list, weather=weather_dict, route="/")
     except:
-        random_error()
+        return random_error()
 
 
 '''
@@ -155,7 +155,7 @@ def login():
             session['user_id'] = accounts[0][1]
         return redirect(url_for('root'))
     except:
-        random_error()
+        return random_error()
 
 
 '''
@@ -192,7 +192,7 @@ def register():
             return user_page()
         return root()
     except:
-        random_error() 
+        return random_error() 
 
 
 '''
@@ -213,7 +213,7 @@ def update_note():
 
         return redirect(url_for('root'))
     except:
-        random_error()
+        return random_error()
 
 
 @app.route("/clear_all", methods=["POST"])
@@ -226,7 +226,7 @@ def clear_todo_list():
         db.commit()
         return redirect(url_for('root'))
     except:
-        random_error()
+        return random_error()
 
 
 @app.route("/add_item", methods=["POST"])
@@ -243,7 +243,7 @@ def add_item_todo():
         db.commit()
         return redirect(url_for('root'))
     except:
-        random_error()
+        return random_error()
 
 
 @app.route("/delete_item", methods=["POST"])
@@ -257,7 +257,7 @@ def delete_item_todo():
         db.commit()
         return redirect(url_for('root'))
     except:
-        random_error()
+        return random_error()
 
 
 if __name__ == '__main__':
