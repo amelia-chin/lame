@@ -126,7 +126,7 @@ input[type=submit] {
   color: #539987;
 }
 
-.footer {
+.pfp-footer {
 	left: 0;
 	bottom: 0;
 	width: 100%;
@@ -135,6 +135,16 @@ input[type=submit] {
 	text-align: center;
   padding-top: .001rem;
   padding-bottom: .001rem;
+}
+
+.footer {
+  position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #539987;
+	color: #4b2142;
+	text-align: center;
 }
 
 .banner-text {
